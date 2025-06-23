@@ -1,0 +1,33 @@
+name: Build and Deploy .NET Application
+
+on:
+  push:
+    branches:
+      - master  # Ejecuta el workflow al hacer push a la rama master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0'
+
+      - name: Restore dependencies
+        run: dotnet restore Lab14_Cusi.csproj  # Asegúrate de que este nombre coincida con tu archivo .csproj
+
+      - name: Build application
+        run: dotnet build Lab14_Cusi.csproj --configuration Release
+
+      - name: Publish application
+        run: dotnet publish Lab14_Cusi.csproj --configuration Release --output ./published
+
+      - name: Deploy to server (ejemplo de despliegue)
+        run: |
+          echo "Despliegue simulado"
+          # Aquí iría un scp real si usaras servidor
