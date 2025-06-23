@@ -1,0 +1,6 @@
+@Lab_14Cusi_HostAddress = http://localhost:5134
+
+GET {{Lab_14Cusi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
