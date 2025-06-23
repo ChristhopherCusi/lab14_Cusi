@@ -3,7 +3,7 @@ name: Build and Deploy .NET Application
 on:
   push:
     branches:
-      - master  # Ejecuta el workflow al hacer push a la rama master
+      - master
 
 jobs:
   build:
@@ -19,15 +19,14 @@ jobs:
           dotnet-version: '8.0'
 
       - name: Restore dependencies
-        run: dotnet restore Lab14_Cusi.csproj  # Asegúrate de que este nombre coincida con tu archivo .csproj
+        run: dotnet restore **/*.csproj  # Busca cualquier .csproj en subcarpetas
 
       - name: Build application
-        run: dotnet build Lab14_Cusi.csproj --configuration Release
+        run: dotnet build **/*.csproj --configuration Release
 
       - name: Publish application
-        run: dotnet publish Lab14_Cusi.csproj --configuration Release --output ./published
+        run: dotnet publish **/*.csproj --configuration Release --output ./published
 
       - name: Deploy to server (ejemplo de despliegue)
         run: |
           echo "Despliegue simulado"
-          # Aquí iría un scp real si usaras servidor
